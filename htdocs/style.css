@@ -181,7 +181,7 @@ hr {
     margin: 24px 0;
 }
 
-#botmenu {
+#botMenu {
     height: 32px;
     width: 100%;
 }
@@ -244,13 +244,13 @@ input {
 
 }
 
-#teaminput {
+#teamInput {
     float: left;
     width: 11%;
     margin-right: 8px;
 }
 
-#bannerinput {
+#bannerInput {
     float: right;
     width: 35%;
     margin-left: 8px;
@@ -275,12 +275,12 @@ input {
     background-color: #afa;
 }
 
-#chatbutton {
+#chatButton {
     width: auto;
     float: left;
     margin-left: 8px;
 }
 
-#chatbutton:hover {
+#chatButton:hover {
     background-color: #aaf;
 }

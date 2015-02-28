@@ -9,37 +9,33 @@
 
         <script>
 
-            function submitteam(myfield,e) {
+            function submitTeam(key) {
                 var keycode;
                 if (window.event) keycode = window.event.keyCode;
-                else if (e) keycode = e.which;
+                else if (key) keycode = key.which;
                 else return true;
 
-                var team = document.getElementById("teaminput");
+                var team = document.getElementById("teamInput");
 
-                if (keycode == 13) {
+                if (keycode == 13)
                    addTeam(team.value, "", "None");
-                   return false;
-                } else return true;
             }
 
-            function submitbanner(myfield,e) {
+            function submitBanner(key) {
                 var keycode;
                 if (window.event) keycode = window.event.keyCode;
-                else if (e) keycode = e.which;
+                else if (key) keycode = key.which;
                 else return true;
 
-                var banner = document.getElementById("bannerinput");
+                var banner = document.getElementById("bannerInput");
 
-                if (keycode == 13) {
+                if (keycode == 13)
                    toggleBanner(banner.value);
-                   return false;
-                } else return true;
             }
 
 
             function addTeam(newName, newStatus, newMatch) {
-                var field = document.getElementById("teaminput");
+                var field = document.getElementById("teamInput");
                 if (newName == 0) {
                     newName = field.value;
                     if (newName == 0)
@@ -97,7 +93,8 @@
             function toggleBanner(myAlert) {
                 var banner = document.getElementById("banner");
                 var header = document.getElementById("header");
-                var field = document.getElementById("bannerinput");
+                var field = document.getElementById("bannerInput");
+
                 if (banner.style.opacity == 0 || banner.style.opacity == "") {
                     if (myAlert == 0)
                         myAlert = field.value;
@@ -121,8 +118,7 @@
 
         </script>
 
-        <div id="banner">
-        </div>
+        <div id="banner">0</div>
 
         <div id="container">
 
@@ -144,16 +140,16 @@
 
                 <hr>
 
-                <div id="botmenu">
+                <div id="botMenu">
                     <button class="button" id="add" onclick="addTeam(0,'Unknown','None')">+</button>
                     <button class="button" id="remove" onclick="remTeam()">-</button>
-                    <input id="teaminput" style="text" onKeyPress="return submitteam(this,event)" placeholder="Team"/>
+                    <input id="teamInput" style="text" onKeyPress="return submitTeam(event)" placeholder="Team"/>
 
                     <button class="button" id="refresh" onclick="">Refresh</button>
-                    <button class="button" id="chatbutton" onclick="">Open Chat</button>
+                    <button class="button" id="chatButton" onclick="">Open Chat</button>
 
-                    <button class="button" id="ban" onclick="toggleBanner()">B</button>
-                    <input id="bannerinput" style="text" onKeyPress="return submitbanner(this,event)" placeholder="Banner Message">
+                    <button class="button" id="ban" onclick="toggleBanner(0)">B</button>
+                    <input id="bannerInput" style="text" onKeyPress="return submitBanner(event)" placeholder="Banner Message">
                 </div>
 
                 <?php
