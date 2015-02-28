@@ -1,7 +1,8 @@
 <!DOCTYPE html style="height: 100%;">
-<html>
+<html lang="en_US">
     <head>
             <title>Regional Schedule</title>
+            <meta charset="UTF-8">
             <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
@@ -38,10 +39,11 @@
                 var field = document.getElementById("teamInput");
                 if (newName == 0) {
                     newName = field.value;
-                    if (newName == 0)
+                    if (newName == 0) {
                         newName = prompt("Team Number:");
                         if (newName == 0)
                             return false;
+                        }
                 }
 
                 var rowNode = document.createElement("TR");
@@ -85,9 +87,25 @@
                 field.value = "";
             }
 
-            function remTeam() {
-                if (document.getElementById("teams").childElementCount > 1)
-                    document.getElementById("teams").removeChild(document.getElementById("teams").childNodes[document.getElementById("teams").childElementCount]);
+            function remTeam(tNum) {
+                var field = document.getElementById("teamInput");
+                if (tNum == 0) {
+                    tNum = field.value;
+                    if (tNum == 0) {
+                        tNum = prompt("Remove Team:");
+                        if (tNum == 0)
+                            return false;
+                    }
+                }
+
+                table = document.getElementById("teams");
+                for (i = 2; i <= table.childElementCount; i++) {
+                    if (table.childNodes[i].childNodes[0].innerHTML == tNum){
+                        table.removeChild(table.childNodes[i]);
+                        break;
+                    }
+                }
+                field.value = "";
             }
 
             function toggleBanner(myAlert) {
@@ -96,12 +114,14 @@
                 var field = document.getElementById("bannerInput");
 
                 if (banner.style.opacity == 0 || banner.style.opacity == "") {
-                    if (myAlert == 0)
+                    if (myAlert == 0) {
                         myAlert = field.value;
-                        if (myAlert == 0)
+                        if (myAlert == 0) {
                             myAlert = prompt("New Banner Message:");
                                 if (myAlert == 0)
                                     return false;
+                            }
+                    }
                     banner.replaceChild(document.createTextNode(myAlert), banner.childNodes[0]);
                     header.style.transitionDelay = "0s";
                     header.style.marginTop = "52px";
@@ -142,7 +162,7 @@
 
                 <div id="botMenu">
                     <button class="button" id="add" onclick="addTeam(0,'Unknown','None')">+</button>
-                    <button class="button" id="remove" onclick="remTeam()">-</button>
+                    <button class="button" id="remove" onclick="remTeam(0)">-</button>
                     <input id="teamInput" style="text" onKeyPress="return submitTeam(event)" placeholder="Team"/>
 
                     <button class="button" id="refresh" onclick="">Refresh</button>
