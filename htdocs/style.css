@@ -1,0 +1,286 @@
+/* STUFF TO ADD
+click on team number on matches switches to team page?
+youtube video of stream embedded in match tab
+do all processing server side to reduce load times and keep data consistent
+*/
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ccc;
+}
+
+#banner {
+    width: 100vw;
+    height: 32px;
+    position: fixed;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    opacity: 0.0;
+
+    font-family: sans;
+    font-size: 24;
+    font-weight: 400;
+    color: #444;
+    text-align: center;
+    line-height: 1.3;
+
+    background-color: #eee255;
+    border-bottom: 1px solid #444;
+
+    -moz-transition: opacity 0.3s;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+#container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#header {
+    height: 60px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+    -moz-transition: margin-top 0.3s;
+    -webkit-transition: margin-top 0.3s;
+    transition: margin-top 0.3s;
+
+}
+
+a {
+    text-decoration: none;
+
+}
+
+.tab:first-child div {
+    margin-left: 18%;
+}
+
+.tab div {
+    position: static;
+    float: left;
+    display: inline-block;
+    margin-left: 2%;
+
+    width: 20%;
+    height: 60px;
+
+    text-align: center;
+    font-family: sans;
+    font-size: 32;
+    color: #444;
+    line-height: 1.9;
+    font-weight: 100;
+
+    box-shadow: 0 6px #444;
+    border-radius: 30px;
+    border: 1px solid #444;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+
+    -moz-transition: margin-top 0.2s, box-shadow 0.2s;
+    -webkit-transition: margin-top 0.2s, box-shadow 0.2s;
+    transition: margin-top 0.2s, box-shadow 0.2s;
+
+}
+
+.tab div:hover {
+    margin-top: 3px;
+    box-shadow: 0 3px 0 #444;
+}
+
+.tab div#current {
+    margin-top: 6px;
+    box-shadow: 0 0 0 #444;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+#content {
+    width: 96%;
+    height: auto;
+    padding: 2%;
+    margin: 0;
+
+    background-color: #eee;
+    border: 1px solid #444;
+    border-radius: 30px;
+}
+
+#teams {
+    width: 100%;
+}
+
+#teams tr:hover td {
+    background-color: #ccc;
+}
+#teams tr:hover select {
+    background-color: #ccc;
+}
+
+#teams th{
+    font-family: sans;
+    font-weight: 100;
+    font-size: 24;
+}
+
+#teams th:nth-child(1){
+    width: 20%;
+}
+#teams th:nth-child(2){
+    width: 40%;
+}
+
+
+#teams td{
+    font-family: sans;
+    font-size: 18;
+    text-align: center;
+
+    -moz-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+#teams select {
+    width: 100%;
+    height: 100%;
+
+    font-family: sans;
+    font-size: 18;
+    text-align: center;
+    color: #444;
+
+    border: 0;
+    background-color: #eee;
+
+    background:url(./dropdown.png) no-repeat right;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+
+    -moz-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #444;
+
+    margin: 24px 0;
+}
+
+#botmenu {
+    height: 32px;
+    width: 100%;
+}
+
+
+.button {
+    width: 32px;
+    height: 32px;
+
+    background-color: #fff;
+    border: 1px solid #444;
+
+    text-align: center;
+    font-family: sans;
+    font-size: 16;
+    color: #444;
+    font-weight: 900;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    -moz-transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+
+}
+
+#add {
+    float: left;
+    margin-right: 8px;
+}
+#remove {
+    float: left;
+    margin-right: 8px;
+}
+
+#add:hover {
+    background-color: #afa;
+}
+
+#remove:hover {
+    background-color: #faa;
+}
+
+input {
+    height: 32px;
+    padding: 4px;
+
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #444;
+    border-radius: 6px;
+
+    font-family: sans;
+    font-size: 16;
+    font-weight: 400;
+
+    text-align: center;
+
+}
+
+#teaminput {
+    float: left;
+    width: 11%;
+    margin-right: 8px;
+}
+
+#bannerinput {
+    float: right;
+    width: 35%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+#ban {
+    float: right;
+}
+
+#ban:hover {
+    background-color: #ffa;
+}
+
+#refresh {
+    width: auto;
+    float: left;
+    margin-left: 20px;
+}
+
+#refresh:hover {
+    background-color: #afa;
+}
+
+#chatbutton {
+    width: auto;
+    float: left;
+    margin-left: 8px;
+}
+
+#chatbutton:hover {
+    background-color: #aaf;
+}

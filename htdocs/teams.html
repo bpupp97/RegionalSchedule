@@ -1,0 +1,139 @@
+<!DOCTYPE html style="height: 100%;">
+    <head>
+            <title>Regional Schedule</title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+
+        <script>
+
+            function submitteam(myfield,e) {
+            var keycode;
+            if (window.event) keycode = window.event.keyCode;
+            else if (e) keycode = e.which;
+            else return true;
+
+            var team = document.getElementById("teaminput");
+
+            if (keycode == 13) {
+               addTeam(team.value, "", "None");
+               team.value = "";
+               return false;
+            } else
+               return true;
+            }
+
+            function addTeam(newName, newStatus, newMatch) {
+                if (newName == 0)
+                    newName = prompt("Team Number:");
+
+                var rowNode = document.createElement("TR");
+
+                var nameNode = document.createElement("TD");
+                var name = document.createTextNode(newName);
+
+                var statusNode = document.createElement("TD");
+                var statusSelect = document.createElement("SELECT");
+                var statusOpt1 = document.createElement("OPTION");
+                statusOpt1.appendChild(document.createTextNode(""));
+                statusSelect.appendChild(statusOpt1);
+                var statusOpt2 = document.createElement("OPTION");
+                statusOpt2.appendChild(document.createTextNode("Broken"));
+                statusSelect.appendChild(statusOpt2);
+                var statusOpt3 = document.createElement("OPTION");
+                statusOpt3.appendChild(document.createTextNode("Missing Parts"));
+                statusSelect.appendChild(statusOpt3);
+                var statusOpt4 = document.createElement("OPTION");
+                statusOpt4.appendChild(document.createTextNode("Not Configured"));
+                statusSelect.appendChild(statusOpt4);
+                var statusOpt5 = document.createElement("OPTION");
+                statusOpt5.appendChild(document.createTextNode("Unready"));
+                statusSelect.appendChild(statusOpt5);
+                var statusOpt6 = document.createElement("OPTION");
+                statusOpt6.appendChild(document.createTextNode("Ready"));
+                statusSelect.appendChild(statusOpt6);
+                statusNode.appendChild(statusSelect);
+
+                var matchNode = document.createElement("TD");
+                var match = document.createTextNode(newMatch);
+
+                nameNode.appendChild(name);
+                matchNode.appendChild(match);
+
+                rowNode.appendChild(nameNode);
+                rowNode.appendChild(statusNode);
+                rowNode.appendChild(matchNode);
+
+                document.getElementById("teams").appendChild(rowNode);
+            }
+
+            function remTeam() {
+                if (document.getElementById("teams").childElementCount > 1)
+                    document.getElementById("teams").removeChild(document.getElementById("teams").childNodes[document.getElementById("teams").childElementCount]);
+            }
+
+            function toggleBanner(myAlert) {
+                var banner = document.getElementById("banner");
+                var header = document.getElementById("header");
+                if (banner.style.opacity == 0 || banner.style.opacity == "") {
+                    if (myAlert == 0)
+                    myAlert = prompt("New Banner Message:");
+                    banner.replaceChild(document.createTextNode(myAlert), banner.childNodes[0]);
+                    header.style.transitionDelay = "0s";
+                    header.style.marginTop = "52px";
+                    banner.style.transitionDelay = "0.3s";
+                    banner.style.opacity = 1;
+                } else {
+                    banner.style.transitionDelay = "0s";
+                    banner.style.opacity = 0;
+                    header.style.transitionDelay = "0.3s";
+                    header.style.marginTop = "20px";
+                }
+            }
+
+        </script>
+
+        <div id="banner">
+        </div>
+
+        <div id="container">
+
+            <div id="header">
+                <a class="tab" href="teams.html"><div id="current" style="background:#e55;">Teams</div></a>
+                <a class="tab" href="schedule.html"><div style="background:#4d4;">Schedule</div></a>
+                <a class="tab" href="match.html"><div style="background:#55e;">Match</div></a>
+            </div>
+
+            <div id="content">
+
+                <table id="teams" rules="all">
+                    <tr>
+                        <th>Team Number</th>
+                        <th>Robot Status</th>
+                        <th>Scheduled Matches</th>
+                    </tr>
+                </table>
+
+                <hr>
+
+                <div id="botmenu">
+                    <button class="button" id="add" onclick="addTeam(0,'Unknown','None')">+</button>
+                    <button class="button" id="remove" onclick="remTeam()">-</button>
+                    <input id="teaminput" style="text" onKeyPress="return submitteam(this,event)" placeholder="Team"/>
+
+                    <button class="button" id="refresh" onclick="">Refresh</button>
+                    <button class="button" id="chatbutton" onclick="">Open Chat</button>
+
+                    <button class="button" id="ban" onclick="toggleBanner(0)">B</button>
+                    <input id="bannerinput" style="text"/ placeholder="Banner Message">
+                </div>
+
+                <?php
+                    echo "PHP installed";
+                ?>
+
+            </div>
+        </div>
+    </body>
+</html>

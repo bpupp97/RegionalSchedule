@@ -1,0 +1,34 @@
+<!DOCTYPE html style="height: 100%;">
+    <head>
+            <title>Regional Schedule</title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div id="container">
+
+            <script>
+                function AddMatch() {
+                    window.alert("Match added");
+                }
+                function RemMatch() {
+                    window.alert("Match removed");
+                }
+            </script>
+
+            <div id="header">
+                <a class="tab" href="teams.html"><div style="background:#e55;">Teams</div></a>
+                <a class="tab" href="schedule.html"><div id="current" style="background:#4d4;">Schedule</div></a>
+                <a class="tab" href="match.html"><div style="background:#55e;">Match</div></a>
+            </div>
+
+
+            <div id="content">
+                stuff here
+                <button class="button" id="add" onclick="AddMatch()">+</button>
+                <button class="button" id="remove" onclick="RemMatch()">-</button>
+            </div>
+
+        </div>
+    </body>
+</html>
