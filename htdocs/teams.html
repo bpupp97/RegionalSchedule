@@ -1,4 +1,5 @@
 <!DOCTYPE html style="height: 100%;">
+<html>
     <head>
             <title>Regional Schedule</title>
             <link rel="stylesheet" type="text/css" href="style.css">
@@ -9,24 +10,43 @@
         <script>
 
             function submitteam(myfield,e) {
-            var keycode;
-            if (window.event) keycode = window.event.keyCode;
-            else if (e) keycode = e.which;
-            else return true;
+                var keycode;
+                if (window.event) keycode = window.event.keyCode;
+                else if (e) keycode = e.which;
+                else return true;
 
-            var team = document.getElementById("teaminput");
+                var team = document.getElementById("teaminput");
 
-            if (keycode == 13) {
-               addTeam(team.value, "", "None");
-               team.value = "";
-               return false;
-            } else
-               return true;
+                if (keycode == 13) {
+                   addTeam(team.value, "", "None");
+                   return false;
+                } else return true;
             }
 
+            function submitbanner(myfield,e) {
+                var keycode;
+                if (window.event) keycode = window.event.keyCode;
+                else if (e) keycode = e.which;
+                else return true;
+
+                var banner = document.getElementById("bannerinput");
+
+                if (keycode == 13) {
+                   toggleBanner(banner.value);
+                   return false;
+                } else return true;
+            }
+
+
             function addTeam(newName, newStatus, newMatch) {
-                if (newName == 0)
-                    newName = prompt("Team Number:");
+                var field = document.getElementById("teaminput");
+                if (newName == 0) {
+                    newName = field.value;
+                    if (newName == 0)
+                        newName = prompt("Team Number:");
+                        if (newName == 0)
+                            return false;
+                }
 
                 var rowNode = document.createElement("TR");
 
@@ -66,6 +86,7 @@
                 rowNode.appendChild(matchNode);
 
                 document.getElementById("teams").appendChild(rowNode);
+                field.value = "";
             }
 
             function remTeam() {
@@ -76,14 +97,20 @@
             function toggleBanner(myAlert) {
                 var banner = document.getElementById("banner");
                 var header = document.getElementById("header");
+                var field = document.getElementById("bannerinput");
                 if (banner.style.opacity == 0 || banner.style.opacity == "") {
                     if (myAlert == 0)
-                    myAlert = prompt("New Banner Message:");
+                        myAlert = field.value;
+                        if (myAlert == 0)
+                            myAlert = prompt("New Banner Message:");
+                                if (myAlert == 0)
+                                    return false;
                     banner.replaceChild(document.createTextNode(myAlert), banner.childNodes[0]);
                     header.style.transitionDelay = "0s";
                     header.style.marginTop = "52px";
                     banner.style.transitionDelay = "0.3s";
                     banner.style.opacity = 1;
+                    field.value = "";
                 } else {
                     banner.style.transitionDelay = "0s";
                     banner.style.opacity = 0;
@@ -125,8 +152,8 @@
                     <button class="button" id="refresh" onclick="">Refresh</button>
                     <button class="button" id="chatbutton" onclick="">Open Chat</button>
 
-                    <button class="button" id="ban" onclick="toggleBanner(0)">B</button>
-                    <input id="bannerinput" style="text"/ placeholder="Banner Message">
+                    <button class="button" id="ban" onclick="toggleBanner()">B</button>
+                    <input id="bannerinput" style="text" onKeyPress="return submitbanner(this,event)" placeholder="Banner Message">
                 </div>
 
                 <?php
